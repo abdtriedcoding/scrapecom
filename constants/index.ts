@@ -1,3 +1,5 @@
+import { Github, Twitter, Linkedin } from "lucide-react";
+
 export const cardData = [
   {
     category: "Electronics",
@@ -28,5 +30,23 @@ export const cardData = [
     category: "Wearables",
     imageSrc:
       "https://cdn.tailkit.com/media/placeholders/photo-wW7XbWYoqK8-700x700.jpg",
+  },
+];
+
+export const footerNavigation = [
+  {
+    name: "GitHub",
+    href: "/",
+    icon: Github,
+  },
+  {
+    name: "Twitter",
+    href: "/",
+    icon: Twitter,
+  },
+  {
+    name: "Linkedin",
+    href: "/",
+    icon: Linkedin,
   },
 ];

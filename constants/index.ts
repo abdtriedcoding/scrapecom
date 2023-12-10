@@ -102,3 +102,9 @@ export const products = [
   },
   // More products...
 ];
+
+export const urls = [
+  "https://th.bing.com/th/id/OIP.4zZtySbcipVkHkuw9h-7EQHaHt?w=191&h=199&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.P2pDcnRGHCGyQ1GpntXVLQHaFM?w=268&h=188&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.rZqblZ2U6urC0BwyRVdvkAHaJR?w=134&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+];

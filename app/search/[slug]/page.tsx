@@ -1,3 +1,4 @@
+import ImageSlider from "@/app/components/ImageSlider";
 import { products } from "@/constants";
 import Link from "next/link";
 
@@ -17,13 +18,7 @@ export default function Page() {
 const ProductCard = ({ product }: { product: any }) => {
   return (
     <Link href="/">
-      <div className="h-68">
-        <img
-          src={product.imageSrc}
-          alt={product.imageAlt}
-          className="object-cover w-full h-full"
-        />
-      </div>
+      <ImageSlider />
       <div className="p-3 sm:p-4">
         <h3 className="text-sm font-medium">{product.name}</h3>
         <p className="text-sm text-gray-500 line-clamp-1">

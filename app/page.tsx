@@ -1,7 +1,9 @@
+import Feed from "./components/Feed";
+
 const HomePage = () => {
   return (
     <>
-      <h1>Feed Section</h1>
+      <Feed />
     </>
   );
 };

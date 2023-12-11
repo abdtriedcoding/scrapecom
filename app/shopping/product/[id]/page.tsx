@@ -16,6 +16,7 @@ export default async function Page({
   let productData: any;
   if (useFakeData) {
     // Use fakeData to avoid API limit
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     productData = fakeProductData.results[0]?.content;
   } else {
     const username = "worldapp";
@@ -43,9 +44,9 @@ export default async function Page({
     productData = responseData.results[0]?.content;
   }
 
-  // if (!productData.pricing) {
-  //   notFound();
-  // }
+  if (!productData.pricing) {
+    notFound();
+  }
 
   return (
     <>
@@ -132,13 +133,13 @@ export default async function Page({
       </div>
 
       {/* Product Specs Section */}
-      {productData.specifications && (
+      {productData?.specifications && (
         <>
           <hr className="my-4 shadow-md" />
           <h3 className="font-semibold text-xl">Specifications</h3>
 
           <div className="flex space-x-5 flex-wrap mt-2">
-            {productData.specifications?.map((section: any) => (
+            {productData?.specifications?.map((section: any) => (
               <div key={section.section_title} className="text-sm space-y-2">
                 {section.items.map((item: any) => (
                   <div key={item.title} className="flex">
@@ -154,21 +155,21 @@ export default async function Page({
 
       {/* Reviews */}
       <div className="mt-6">
-        {productData.reviews ? (
+        {productData?.reviews ? (
           <>
             <h2 className="font-medium text-xl pb-4">
-              Reviews ({productData.reviews.rating})
+              Reviews ({productData?.reviews.rating})
             </h2>
 
             <h4 className="text-lg italic">Top Review</h4>
 
-            {productData.reviews.top_review && (
+            {productData?.reviews?.top_review && (
               <div className="mt-4 space-y-1">
                 <p className="font-bold capitalize">
-                  {productData.reviews.top_review.author} says:
+                  {productData?.reviews?.top_review?.author} says:
                 </p>
                 <p className="text-sm text-gray-600">
-                  {productData.reviews.top_review.text}
+                  {productData?.reviews?.top_review?.text}
                 </p>
               </div>
             )}

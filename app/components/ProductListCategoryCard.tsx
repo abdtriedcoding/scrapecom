@@ -4,14 +4,16 @@ import React from "react";
 const ProductListCategoryCard = ({
   category,
   imageSrc,
+  url,
 }: {
   category: any;
   imageSrc: any;
+  url: string;
 }) => {
   return (
     <>
       <Link
-        href="/"
+        href={url}
         className="group relative block overflow-hidden transition ease-out active:opacity-75 rounded-md"
       >
         <div className="w-68 h-48 relative overflow-hidden rounded-md">

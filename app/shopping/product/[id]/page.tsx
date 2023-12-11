@@ -2,7 +2,6 @@ import ImageSlider from "@/app/components/ImageSlider";
 import fakeProductData from "@/fakeProductData.json";
 import { notFound } from "next/navigation";
 import { IdParams } from "@/type";
-import getAllProducts from "@/lib/getAllProducts";
 import ProductDetails from "./components/ProductDetails";
 import BuyNowButton from "./components/BuyNowButton";
 import ProductSpecification from "./components/ProductSpecification";
@@ -24,9 +23,9 @@ export default async function Page({ params }: IdParams) {
     productData = responseData.results[0]?.content;
   }
 
-  // if (!productData.pricing) {
-  //   notFound();
-  // }
+  if (!productData.pricing) {
+    notFound();
+  }
 
   return (
     <>

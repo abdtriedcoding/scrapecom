@@ -8,15 +8,14 @@ import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { urls } from "@/constants";
 
-const ImageSlider = () => {
+const ImageSlider = ({urls}:{urls:string[]}) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const [slideConfig, setSlideConfig] = useState({
     isBeginning: true,
-    isEnd: activeIndex === (urls.length ?? 0) - 1,
+    isEnd: activeIndex === (urls?.length ?? 0) - 1,
     touchStartX: 0,
   });
 
@@ -25,7 +24,7 @@ const ImageSlider = () => {
       setActiveIndex(activeIndex);
       setSlideConfig({
         isBeginning: activeIndex === 0,
-        isEnd: activeIndex === (urls.length ?? 0) - 1,
+        isEnd: activeIndex === (urls?.length ?? 0) - 1,
         touchStartX: 0,
       });
     });
@@ -107,7 +106,7 @@ const ImageSlider = () => {
         slidesPerView={1}
         className="h-full w-full"
       >
-        {urls.map((url, i) => (
+        {urls?.map((url, i) => (
           <SwiperSlide key={i} className="-z-10 relative h-full w-full">
             <img
               loading="eager"

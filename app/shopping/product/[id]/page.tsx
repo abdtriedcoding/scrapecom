@@ -1,89 +1,123 @@
 import ImageSlider from "@/app/components/ImageSlider";
 import { Button } from "@/components/ui/button";
-import { product2 } from "@/constants";
 import { cn } from "@/lib/utils";
 import { StarIcon } from "lucide-react";
+import fakeProductData from "@/fakeProductData.json";
+import { notFound } from "next/navigation";
 
-export default function Example() {
+export default async function Page({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
+  // Define a flag to determine whether to use fake data or real data
+  const useFakeData = false;
+
+  let productData: any;
+  if (useFakeData) {
+    // Use fakeData to avoid API limit
+    productData = fakeProductData.results[0]?.content;
+  } else {
+    const username = "worldapp";
+    const password = "f#8X2m7Gr8!#kbB";
+    const body = {
+      source: "google_shopping_product",
+      domain: "com",
+      query: id,
+      parse: true,
+      geo_location: "India",
+      locale: "en-in",
+    };
+    const response = await fetch("https://realtime.oxylabs.io/v1/queries", {
+      method: "post",
+      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Basic " + Buffer.from(`${username}:${password}`).toString("base64"),
+      },
+    });
+
+    const responseData = await response.json();
+    // Access the first item in the results array and then access the content field
+    productData = responseData.results[0]?.content;
+  }
+
+  if (!productData.pricing) {
+    notFound();
+  }
+
   return (
     <>
       <div className="grid md:grid-cols-2 gap-4 grid-cols-1 lg:items-center">
         {/* Image gallery */}
-        <ImageSlider />
+        <ImageSlider urls={productData?.images?.full_size} />
         {/* Content */}
         <div>
-          {/* product2 details */}
+          {/* Product details */}
           <div className="flex justify-between items-center">
-            <h1 className="text-xl font-medium text-gray-900">
-              {product2.name}
+            <h1 className="text-xl font-medium max-w-sm">
+              {productData?.title}
             </h1>
-            <p className="text-xl font-medium text-gray-900">
-              {product2.price}
-            </p>
+            {productData?.pricing?.online && (
+              <p className="text-xl font-medium">
+                {productData?.pricing?.online?.[0]?.price_total}{" "}
+                {productData?.pricing?.online?.[0]?.currency}
+              </p>
+            )}
           </div>
           {/* Reviews */}
           <div className="mt-4">
-            <div className="flex items-center">
-              <p className="text-sm text-gray-700">{product2.rating}</p>
-              <div className="ml-1 flex items-center">
-                {[0, 1, 2, 3, 4, 5].map((rating) => (
-                  <StarIcon
-                    key={rating}
-                    className={cn(
-                      product2.rating > rating
-                        ? "text-yellow-400"
-                        : "text-gray-200",
-                      "h-5 w-5 flex-shrink-0"
-                    )}
-                    aria-hidden="true"
-                  />
-                ))}
+            {productData?.reviews?.rating ? (
+              <div className="flex items-center">
+                <p>{productData?.reviews?.rating}</p>
+                <div className="ml-1 flex items-center">
+                  {[1, 2, 3, 4, 5].map((rating) => (
+                    <StarIcon
+                      key={rating}
+                      className={cn(
+                        productData?.reviews?.rating > rating
+                          ? "text-yellow-400"
+                          : "text-gray-200",
+                        "h-5 w-5 flex-shrink-0"
+                      )}
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
               </div>
-              <div aria-hidden="true" className="ml-4 text-sm text-gray-300">
-                ·
+            ) : (
+              <h4 className="italic">No Rating yet.</h4>
+            )}
+          </div>
+          {/* Highlights */}
+          {productData?.highlights && (
+            <div className="mt-10">
+              <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
+              <div className="mt-4">
+                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                  {productData?.highlights?.map(
+                    (highlight: any, index: number) => (
+                      <li key={index} className="text-gray-400">
+                        <span className="text-gray-600">{highlight}</span>
+                      </li>
+                    )
+                  )}
+                </ul>
               </div>
             </div>
-          </div>
-          {/* Highlists */}
-          <div className="mt-10">
-            <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-
-            <div className="mt-4">
-              <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    Hand cut and sewn locally
-                  </span>
-                </li>
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    Dyed with our proprietary colors
-                  </span>
-                </li>
-                <li className="text-gray-400">
-                  <span className="text-gray-600">
-                    Pre-washed &amp; pre-shrunk
-                  </span>
-                </li>
-                <li className="text-gray-400">
-                  <span className="text-gray-600">Ultra-soft 100% cotton</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          )}
           {/* Description */}
-          <div className="py-10">
-            <h2 className="text-sm font-medium text-gray-900">Details</h2>
-
-            <div className="mt-4 space-y-6">
-              <p className="text-sm text-gray-600">
-                The 6-Pack includes two black, two white, and two heather gray
-                Basic Tees. Sign up for our subscription service and be the
-                first to get new, exciting colors, like our upcoming
-                &quot;Charcoal Gray&quot; limited release.
-              </p>
+          {productData?.description && (
+            <div className="py-10">
+              <h2 className="text-sm font-medium">Details</h2>
+              <div className="mt-4 space-y-6">
+                <p className="text-sm text-gray-600">
+                  {productData?.description}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
           {/* Buy Now Button */}
           <Button className="w-full flex bg-blue-500 hover:bg-blue-400">
             Buy Now
@@ -91,17 +125,33 @@ export default function Example() {
         </div>
       </div>
       {/* Reviews */}
-      <div className="mt-6">
-        <h2 className="text-sm font-medium text-gray-900">Reviews</h2>
 
-        <div className="mt-4 space-y-6">
-          <p className="text-sm text-gray-600">
-            The 6-Pack includes two black, two white, and two heather gray Basic
-            Tees. Sign up for our subscription service and be the first to get
-            new, exciting colors, like our upcoming &quot;Charcoal Gray&quot;
-            limited release.
-          </p>
-        </div>
+      <div className="mt-6">
+        {productData.reviews ? (
+          <>
+            <h2 className="font-medium text-xl pb-4">
+              Reviews ({productData.reviews.rating})
+            </h2>
+
+            <h4 className="text-lg italic">Top Review</h4>
+
+            {productData.reviews.top_review && (
+              <div className="mt-4 space-y-1">
+                <p className="font-bold capitalize">
+                  {productData.reviews.top_review.author} says:
+                </p>
+                <p className="text-sm text-gray-600">
+                  {productData.reviews.top_review.text}
+                </p>
+              </div>
+            )}
+          </>
+        ) : (
+          <div>
+            <h3 className="font-bold text-xl">Reviews</h3>
+            <h4 className="text-lg italic">No Reviews yet.</h4>
+          </div>
+        )}
       </div>
     </>
   );

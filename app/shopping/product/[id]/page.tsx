@@ -7,6 +7,7 @@ import BuyNowButton from "./components/BuyNowButton";
 import ProductSpecification from "./components/ProductSpecification";
 import ProductReviews from "./components/ProductReviews";
 import getProductDetails from "@/lib/getProductDetails";
+import RelatedProducts from "./components/RelatedProducts";
 
 export default async function Page({ params }: IdParams) {
   const { id } = params;
@@ -33,12 +34,13 @@ export default async function Page({ params }: IdParams) {
         <ImageSlider urls={productData?.images?.full_size} />
         <div>
           <ProductDetails productData={productData} />
-          <BuyNowButton productData={productData}/>
+          <BuyNowButton productData={productData} />
         </div>
       </div>
 
       <ProductSpecification productData={productData} />
       <ProductReviews productData={productData} />
+      <RelatedProducts productData={productData} />
     </>
   );
 }

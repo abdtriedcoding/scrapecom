@@ -4,7 +4,7 @@ const ProductSpecification = ({ productData }: { productData: any }) => {
       {productData?.specifications && (
         <>
           <hr className="my-4 shadow-md" />
-          <h3 className="font-semibold text-xl">Specifications</h3>
+          <h3 className="text-xl font-semibold">Specifications</h3>
 
           <div className="flex space-x-5 flex-wrap mt-2">
             {productData?.specifications?.map((section: any) => (

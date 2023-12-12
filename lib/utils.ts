@@ -39,7 +39,7 @@ export function constructMetadata({
       creator: "@Sidddabdullah",
     },
     icons,
-    // metadataBase: new URL('https://digitalhippo.up.railway.app'),
+    metadataBase: new URL('https://scrapecom.vercel.app'),
     ...(noIndex && {
       robots: {
         index: false,

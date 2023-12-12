@@ -1,4 +1,4 @@
-import fakeData from "@/fakeData.json";
+import fakeProducts from "@/fakeProducts.json";
 import getAllProducts from "@/lib/getAllProducts";
 import { Params } from "@/type";
 import ProductCard from "./components/ProductCard";
@@ -13,7 +13,7 @@ export default async function Page({ params }: Params) {
   let allProducts;
   if (useFakeData) {
     // Use fakeData to avoid API limit
-    allProducts = fakeData;
+    allProducts = fakeProducts;
   } else {
     allProducts = await getAllProducts(decodedCategory);
   }

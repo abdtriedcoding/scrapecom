@@ -1,5 +1,5 @@
 import ImageSlider from "@/app/components/ImageSlider";
-import fakeProductData from "@/fakeProductData.json";
+import fakeProductDetails from "@/fakeProductDetails.json";
 import { notFound } from "next/navigation";
 import { IdParams } from "@/type";
 import ProductDetails from "./components/ProductDetails";
@@ -18,7 +18,7 @@ export default async function Page({ params }: IdParams) {
   let productData: any;
   if (useFakeData) {
     // Use fakeData to avoid API limit
-    productData = fakeProductData.results[0]?.content;
+    productData = fakeProductDetails.results[0]?.content;
   } else {
     const responseData = await getProductDetails(id);
     productData = responseData.results[0]?.content;

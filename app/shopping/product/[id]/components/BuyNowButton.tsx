@@ -1,12 +1,18 @@
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
-const BuyNowButton = () => {
+const BuyNowButton = ({ productData }: { productData: any }) => {
   return (
-    <>
-      <Button className="w-full flex bg-blue-500 hover:bg-blue-400">
-        Buy Now
-      </Button>
-    </>
+    <Link
+      href={`${productData?.url}`}
+      target="_blank"
+      className={buttonVariants({
+        variant: "default",
+        size: "full",
+      })}
+    >
+      Buy Now
+    </Link>
   );
 };
 

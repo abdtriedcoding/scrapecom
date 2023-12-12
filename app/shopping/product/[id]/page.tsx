@@ -33,7 +33,7 @@ export default async function Page({ params }: IdParams) {
         <ImageSlider urls={productData?.images?.full_size} />
         <div>
           <ProductDetails productData={productData} />
-          <BuyNowButton />
+          <BuyNowButton productData={productData}/>
         </div>
       </div>
 

@@ -23,7 +23,7 @@ export default async function Page({ params }: Params) {
       <h3 className="pb-5 font-light">
         Showing results for{" "}
         <span className="text-slate-500 font-semibold">
-          "{decodedCategory}"
+          &ldquo;{decodedCategory}&rdquo;
         </span>
       </h3>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">

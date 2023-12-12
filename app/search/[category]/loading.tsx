@@ -9,7 +9,7 @@ export default function Loading() {
       </div>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {[...Array(8)].map((_, i: number) => (
-          <div className="border rounded-2xl flex flex-col hover:shadow-lg transition duration-200 ease-in-out italic">
+          <div key={i} className="border rounded-2xl flex flex-col hover:shadow-lg transition duration-200 ease-in-out italic">
             <div className="p-3 sm:p-4 space-y-3">
               <Skeleton className="w-[160px] md:w-[180px] h-4" />
               <Skeleton className="w-[140px] md:w-[160px] h-4" />

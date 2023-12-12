@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -17,7 +18,9 @@ const ProductListCategoryCard = ({
         className="group relative block overflow-hidden transition ease-out active:opacity-75 rounded-md"
       >
         <div className="w-68 h-48 relative overflow-hidden rounded-md">
-          <img
+          <Image
+            fill
+            loading="eager"
             src={imageSrc}
             alt={`Product Image - ${category}`}
             className="object-cover w-full h-full rounded-md transform transition ease-out group-hover:scale-110"

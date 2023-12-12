@@ -1,15 +1,29 @@
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SearchIcon } from "lucide-react";
+import { redirect } from "next/navigation";
+import SearchButton from "./SearchButton";
 
 const SearchBar = () => {
+  async function submitSearchForm(formData: FormData) {
+    "use server";
+    const searchQuery = formData.get("searchQuery");
+    if (searchQuery) {
+      redirect(`/search/${searchQuery}`);
+    }
+  }
+
   return (
-    <form className="flex w-full max-w-xl mx-auto space-x-2 items-center justify-center">
-      <Input type="text" placeholder="Search products..." />
-      <Button className="rounded-full px-3 bg-blue-500 hover:bg-blue-400">
-        <SearchIcon className="w-5 h-5" />
-      </Button>
-    </form>
+    <div className="w-full">
+      <form action={submitSearchForm}>
+        <div className="flex space-x-2 items-center justify-center max-w-xl mx-auto">
+          <Input
+            name="searchQuery"
+            type="text"
+            placeholder="Search products..."
+          />
+          <SearchButton />
+        </div>
+      </form>
+    </div>
   );
 };
 

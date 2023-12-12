@@ -108,3 +108,17 @@ export const urls = [
   "https://th.bing.com/th/id/OIP.P2pDcnRGHCGyQ1GpntXVLQHaFM?w=268&h=188&c=7&r=0&o=5&dpr=1.1&pid=1.7",
   "https://th.bing.com/th/id/OIP.rZqblZ2U6urC0BwyRVdvkAHaJR?w=134&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
 ];
+
+export const product2 = {
+  name: "Basic Tee",
+  price: "$35",
+  rating: 3.9,
+  description:
+    "The Basic tee is an honest new take on a classic. The tee uses super soft, pre-shrunk cotton for true comfort and a dependable fit. They are hand cut and sewn locally, with a special dye technique that gives each tee it's own look.",
+  details: [
+    "Only the best materials",
+    "Ethically and locally made",
+    "Pre-washed and pre-shrunk",
+    "Machine wash cold with similar colors",
+  ],
+};

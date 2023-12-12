@@ -1,6 +1,6 @@
 const getProductDetails = async (id: string) => {
-  const username = "worldapp";
-  const password = "f#8X2m7Gr8!#kbB";
+  const username = process.env.NEXT_PUBLIC_USERNAME;
+  const password = process.env.NEXT_PUBLIC_PASSWORD;
   const body = {
     source: "google_shopping_product",
     domain: "com",

@@ -6,7 +6,7 @@ const ProductDetails = ({ productData }: { productData: any }) => {
   return (
     <>
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-medium max-w-sm">{productData?.title}</h1>
+        <h1 className="text-xl font-medium max-w-xs md:max-w-sm">{productData?.title}</h1>
         {productData?.pricing?.online && (
           <p className="text-xl font-medium">
             {productData?.pricing?.online?.[0]?.price_total}{" "}

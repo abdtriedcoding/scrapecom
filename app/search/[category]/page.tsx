@@ -1,4 +1,3 @@
-import ImageSlider from "@/app/components/ImageSlider";
 import Link from "next/link";
 import fakeData from "@/fakeData.json";
 
@@ -16,7 +15,6 @@ export default async function Page({
   let data;
   if (useFakeData) {
     // Use fakeData to avoid API limit
-    console.log(fakeData);
     data = fakeData;
   } else {
     // Use real data fetched from the API
@@ -48,7 +46,12 @@ export default async function Page({
 
   return (
     <>
-      <h3 className="pb-5 font-light">Showing results for {decodedCategory}</h3>
+      <h3 className="pb-5 font-light">
+        Showing results for{" "}
+        <span className="text-slate-500 font-semibold">
+          "{decodedCategory}"
+        </span>
+      </h3>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {data.results[0]?.content?.results?.organic?.map(
           (product: any, i: number) => (
@@ -62,11 +65,23 @@ export default async function Page({
 
 const ProductCard = ({ product }: { product: any }) => {
   return (
-    <Link href="/">
-      <ImageSlider />
-      <div className="p-3 sm:p-4">
+    <Link
+      className={`border rounded-2xl flex flex-col hover:shadow-lg transition duration-200 ease-in-out 
+                    ${product.url.includes("url?url=") && "italic"}
+                  `}
+      key={product.pos}
+      prefetch={false}
+      href={
+        product.url.includes("url?url=")
+          ? // Route to External URL
+            product.url.split("url?url=")?.[1]
+          : // Route to Google Shopping Page & remove any query params
+            product.url.split("?")?.[0]
+      }
+    >
+      <div className="p-3 sm:p-4 space-y-1">
         <h3 className="text-sm font-medium">{product.title}</h3>
-        <p className="text-sm text-gray-500 line-clamp-1">
+        <p className="text-sm text-sky-500 line-clamp-1">
           {product.merchant.name}
         </p>
         <p className="text-sm text-gray-500">{product.price_str}</p>

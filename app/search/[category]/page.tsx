@@ -10,7 +10,7 @@ export default async function Page({
   const decodedCategory = decodeURIComponent(category);
 
   // Define a flag to determine whether to use fake data or real data
-  const useFakeData = true;
+  const useFakeData = false;
 
   let data;
   if (useFakeData) {

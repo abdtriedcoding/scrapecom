@@ -11,7 +11,7 @@ export default async function Page({
   params: { id: string };
 }) {
   // Define a flag to determine whether to use fake data or real data
-  const useFakeData = false;
+  const useFakeData = true;
 
   let productData: any;
   if (useFakeData) {
@@ -43,9 +43,9 @@ export default async function Page({
     productData = responseData.results[0]?.content;
   }
 
-  if (!productData.pricing) {
-    notFound();
-  }
+  // if (!productData.pricing) {
+  //   notFound();
+  // }
 
   return (
     <>
@@ -91,7 +91,7 @@ export default async function Page({
             )}
           </div>
           {/* Delivery */}
-          {productData?.pricing.online[0]?.details && (
+          {productData?.pricing?.online[0]?.details && (
             <p className="mt-5 text-sm">
               {productData?.pricing.online[0]?.details}
             </p>
@@ -130,8 +130,29 @@ export default async function Page({
           </Button>
         </div>
       </div>
-      {/* Reviews */}
 
+      {/* Product Specs Section */}
+      {productData.specifications && (
+        <>
+          <hr className="my-4 shadow-md" />
+          <h3 className="font-semibold text-xl">Specifications</h3>
+
+          <div className="flex space-x-5 flex-wrap mt-2">
+            {productData.specifications?.map((section: any) => (
+              <div key={section.section_title} className="text-sm space-y-2">
+                {section.items.map((item: any) => (
+                  <div key={item.title} className="flex">
+                    <p className="font-bold">{item.title}:</p>
+                    <p className="ml-2">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Reviews */}
       <div className="mt-6">
         {productData.reviews ? (
           <>

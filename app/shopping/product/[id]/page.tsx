@@ -90,9 +90,15 @@ export default async function Page({
               <h4 className="italic">No Rating yet.</h4>
             )}
           </div>
+          {/* Delivery */}
+          {productData?.pricing.online[0]?.details && (
+            <p className="mt-5 text-sm">
+              {productData?.pricing.online[0]?.details}
+            </p>
+          )}
           {/* Highlights */}
           {productData?.highlights && (
-            <div className="mt-10">
+            <div className="mt-6">
               <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">

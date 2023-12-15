@@ -22,7 +22,7 @@ const ProductReviews = ({ productData }: { productData: any }) => {
         </>
       ) : (
         <div>
-          <h3 className="font-bold text-xl">Reviews</h3>
+          <h3 className="text-xl font-semibold">Reviews</h3>
           <h4 className="text-lg italic">No Reviews yet.</h4>
         </div>
       )}

@@ -10,7 +10,7 @@ const SearchButton = () => {
       variant={"search"}
       type="submit"
       disabled={pending}
-      className={`rounded-full p-2 ${pending ? "opacity-50" : ""}`}
+      className={`rounded-full p-2 dark:bg-slate-400 ${pending ? "opacity-50" : ""}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

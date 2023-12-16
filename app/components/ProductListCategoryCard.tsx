@@ -24,7 +24,7 @@ const ProductListCategoryCard = ({
           />
           <div className="absolute inset-0 bg-black bg-opacity-25 transition ease-out group-hover:bg-opacity-0 rounded-md" />
           <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="rounded-3xl bg-white bg-opacity-95 px-4 py-3 text-sm font-semibold uppercase tracking-wide transition ease-out group-hover:bg-blue-500 group-hover:text-white">
+            <div className="rounded-3xl bg-white dark:bg-black bg-opacity-95 px-4 py-3 text-sm font-semibold uppercase tracking-wide transition ease-out group-hover:bg-blue-500 group-hover:text-white">
               {category}
             </div>
           </div>

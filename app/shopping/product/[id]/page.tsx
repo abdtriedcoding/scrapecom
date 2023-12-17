@@ -13,7 +13,7 @@ export default async function Page({ params }: IdParams) {
   const { id } = params;
 
   // Define a flag to determine whether to use fake data or real data
-  const useFakeData = true;
+  const useFakeData = false;
 
   let productData: any;
   if (useFakeData) {

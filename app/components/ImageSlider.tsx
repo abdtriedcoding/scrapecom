@@ -8,8 +8,10 @@ import { useEffect, useState } from "react";
 import { Pagination } from "swiper/modules";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { ImageLoaderParams } from "@/type";
 
-const ImageSlider = ({urls}:{urls:string[]}) => {
+const ImageSlider = ({ urls }: { urls: string[] }) => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
@@ -56,6 +58,10 @@ const ImageSlider = ({urls}:{urls:string[]}) => {
   const activeStyles =
     "active:scale-[0.97] grid opacity-100 hover:scale-105 absolute top-1/2 -translate-y-1/2 aspect-square h-8 w-8 z-50 place-items-center rounded-full border-2 bg-white border-zinc-300";
   const inactiveStyles = "hidden text-gray-400";
+
+  const imageLoader = ({ src, width, quality }: ImageLoaderParams): string => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
 
   return (
     <div
@@ -108,7 +114,9 @@ const ImageSlider = ({urls}:{urls:string[]}) => {
       >
         {urls?.map((url, i) => (
           <SwiperSlide key={i} className="-z-10 relative h-full w-full">
-            <img
+            <Image
+              loader={imageLoader}
+              fill
               loading="eager"
               className="-z-10 h-full w-full object-cover object-center"
               src={url}

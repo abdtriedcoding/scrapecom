@@ -12,5 +12,11 @@ export type RelatedProduct = {
   rating: number;
   currency: string;
   price: number;
-  store?: string
+  store?: string;
+};
+
+export type ImageLoaderParams = {
+  src: string;
+  width: number;
+  quality?: number;
 };

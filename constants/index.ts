@@ -48,17 +48,17 @@ export const cardData = [
 export const footerNavigation = [
   {
     name: "GitHub",
-    href: "https://github.com/sidd-abdullah/scrapecom",
+    href: "https://github.com/abdtriedcoding/scrapecom",
     icon: Github,
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/Sidddabdullah",
+    href: "https://twitter.com/abdtriedcoding",
     icon: Twitter,
   },
   {
     name: "Linkedin",
-    href: "https://www.linkedin.com/in/sidd-abdullah",
+    href: "https://www.linkedin.com/in/abdtriedcoding",
     icon: Linkedin,
   },
 ];
